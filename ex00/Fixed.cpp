@@ -13,17 +13,19 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &other) //Fixed(const Fixed& const); COPIE
+Fixed::Fixed(const Fixed &other) //copy constructor, utilisé pour créer un nouvel objet à partir d'un objet existant.
 {
 	std::cout << "Copy constructor called" << std::endl;
-	*this = other;
+	*this = other; // copie tout l onjet other dans this
 	return;
 }
 
-Fixed& Fixed::operator=(const Fixed &other)//Fixed& operator=(const Fixed& other);
+
+// assignement copy est appelé lorsque vous utilisez l'opérateur d'assignation (=) pour copier les données de l'objet other dans l'objet courant (*this).
+Fixed& Fixed::operator=(const Fixed &other)// copy assignment operator, utilisé pour copier les données d'un objet existant dans un objet déjà existant.
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->_number = other.getRawBits();
+	this->_number = other.getRawBits(); // copie seulement le champ _number et pas tout l objet.
 	return (*this);
 }
 
