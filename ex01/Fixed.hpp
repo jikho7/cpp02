@@ -4,10 +4,11 @@
 #include <iostream>
 #include <ios>
 #include <string>
-
+#include <cmath>
 class Fixed
 {
 	public:
+		Fixed();
 		Fixed(const int nb);
 		Fixed(const float nb);
 		~Fixed();

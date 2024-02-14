@@ -10,6 +10,17 @@ int main( void )
 	Fixed const d( b );
 	a = Fixed( 1234.4321f );
 
+	// bitshifting
+	// std::cout << (1 << 0) << std::endl;
+	// std::cout << (1 << 1) << std::endl;
+	// std::cout << (1 << 2) << std::endl;
+	// std::cout << (1 << 3) << std::endl;
+	// std::cout << (1 << 4) << std::endl;
+	// std::cout << (1 << 5) << std::endl;
+	// std::cout << (1 << 6) << std::endl;
+	// std::cout << (1 << 7) << std::endl;
+	// std::cout << (1 << 8) << std::endl;
+
 	std::cout << "a is " << a << std::endl;
 	std::cout << "b is " << b << std::endl;
 	std::cout << "c is " << c << std::endl;

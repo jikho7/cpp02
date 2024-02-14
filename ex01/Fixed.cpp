@@ -1,11 +1,23 @@
 #include "Fixed.hpp"
 
 const int Fixed::_rest = 8;
+//(1 << _rest) == / 256
 
-Fixed::Fixed() // _number(0)
+Fixed::Fixed() : _number(0)
 {
-	this->_number = 0;
 	std::cout << "Default constructor called" << std::endl;
+}
+
+Fixed::Fixed(int const nb)
+{
+	this->_number = nb * (1 << _rest);
+	std::cout << "Int constructor called" << std::endl;
+}
+
+Fixed::Fixed(float const nb)
+{
+	this->_number = roundf(nb * (1 << _rest));
+	std::cout << "Float constructor called" << std::endl;
 }
 
 Fixed::~Fixed()
@@ -13,14 +25,30 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &other) //Fixed(const Fixed& const); COPIE
+float Fixed::toFloat( void ) const // convertit la valeur en virgule fixe en nombre à virgule flottante
+{
+	return static_cast<float>(this->_number) / (1 << _rest);
+}
+
+int Fixed::toInt( void ) const // convertit la valeur en virgule fixe en nombre entier.
+{
+	return this->_number / (1 << _rest);
+}
+
+std::ostream& operator<<(std::ostream& o, const Fixed &other) // o = out flux
+{
+    o << other.toFloat();
+	return o;
+}
+
+Fixed::Fixed(const Fixed &other)
 {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 	return;
 }
 
-Fixed& Fixed::operator=(const Fixed &other)//Fixed& operator=(const Fixed& other);
+Fixed& Fixed::operator=(const Fixed &other)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	this->_number = other.getRawBits();
@@ -29,7 +57,6 @@ Fixed& Fixed::operator=(const Fixed &other)//Fixed& operator=(const Fixed& other
 
 int Fixed::getRawBits(void) const // retourne la valeur du nombre à virgule fixe sans la convertir.
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_number);
 }
 

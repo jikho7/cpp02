@@ -2,9 +2,9 @@
 
 const int Fixed::_rest = 8;
 
-Fixed::Fixed() // _number(0)
+Fixed::Fixed() : _number(0)
 {
-	this->_number = 0;
+	//this->_number = 0;
 	std::cout << "Default constructor called" << std::endl;
 }
 
@@ -24,8 +24,11 @@ Fixed::Fixed(const Fixed &other) //copy constructor, utilisé pour créer un nou
 // assignement copy est appelé lorsque vous utilisez l'opérateur d'assignation (=) pour copier les données de l'objet other dans l'objet courant (*this).
 Fixed& Fixed::operator=(const Fixed &other)// copy assignment operator, utilisé pour copier les données d'un objet existant dans un objet déjà existant.
 {
-	std::cout << "Copy assignment operator called" << std::endl;
-	this->_number = other.getRawBits(); // copie seulement le champ _number et pas tout l objet.
+	if (this != &other)
+	{
+		std::cout << "Copy assignment operator called" << std::endl;
+		this->_number = other.getRawBits(); // copie seulement le champ _number et pas tout l objet.
+	}
 	return (*this);
 }
 
